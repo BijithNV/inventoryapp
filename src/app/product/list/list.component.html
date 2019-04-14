@@ -1,0 +1,42 @@
+<div class="row header">
+  <div class="col-sm">
+    <h4>Products</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm list-action-button">
+    <button type="button" class="btn btn-link float-right links-primary fa fa-filter fa-lg">Filter</button>
+    <button type="button" class="btn btn-link float-right fa fa-search fa-lg">Search</button>
+    <button type="button" class="btn btn-link float-right fa fa-file fa-lg">Add New</button>
+  </div>
+</div>
+
+<div class="row content">
+  <div class="col-sm-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Code</th>
+          <th scope="col">Category</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Purchase Rate</th>
+          <th scope="col">Sales Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ product.name }}</td>
+          <td>{{ product.code }}</td>
+          <td>{{ product.category.name }}</td>
+          <td>{{ product.unit.name }}</td>
+          <td>{{ product.purchaseRate }}</td>
+          <td>{{ product.salesRate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
