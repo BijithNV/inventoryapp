@@ -17,8 +17,9 @@ export class ListComponent implements OnInit {
       this.products = this.productService.getAllProducts()
   }
 
-  deleteProduct($event):void{
-    console.log($event);
+  deleteProduct(product):void{
+    const result = this.productService.deleteProduct(product);
+    console.log(result);
   }
 
 }

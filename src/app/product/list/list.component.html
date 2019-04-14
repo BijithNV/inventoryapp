@@ -36,7 +36,7 @@
           <td>{{ product.unit.name }}</td>
           <td>{{ product.purchaseRate }}</td>
           <td>{{ product.salesRate }}</td>
-          <td><label class='delete-label fa fa-trash-o' (click)='deleteProduct($event)' ></label></td>
+          <td><button class='delete-label fa fa-trash-o' (click)='deleteProduct(product)' ></button></td>
         </tr>
       </tbody>
     </table>
