@@ -24,10 +24,11 @@
           <th scope="col">Unit</th>
           <th scope="col">Purchase Rate</th>
           <th scope="col">Sales Rate</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products; index as i">
+        <tr *ngFor="let product of products | async; index as i">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ product.name }}</td>
           <td>{{ product.code }}</td>
@@ -35,6 +36,7 @@
           <td>{{ product.unit.name }}</td>
           <td>{{ product.purchaseRate }}</td>
           <td>{{ product.salesRate }}</td>
+          <td><label class='delete-label fa fa-trash-o' (click)='deleteProduct($event)' ></label></td>
         </tr>
       </tbody>
     </table>
