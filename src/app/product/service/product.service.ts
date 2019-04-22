@@ -27,6 +27,11 @@ export class ProductService {
     return of(this.products)
   }
 
+  getProductById(id:number):Observable<IProduct>{
+    var product = this.products.find(item => item.id === id);
+    return of(product);
+  }
+
   addNewProduct(product:IProduct):void{
     this.products.push(product);
   }

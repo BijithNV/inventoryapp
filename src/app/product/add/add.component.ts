@@ -5,7 +5,8 @@ import { Lookup } from '../models/lookup';
 import { LookupService } from 'src/app/shared/lookup.service';
 import { Product, IProduct } from '../models/product';
 import { ProductService } from '../service/product.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class AddComponent implements OnInit, OnDestroy {
   constructor(private fb:FormBuilder,
     private lookupService:LookupService,
     private productService:ProductService,
+    private route: ActivatedRoute,
     private router: Router
     ) { }
 
@@ -36,6 +38,11 @@ export class AddComponent implements OnInit, OnDestroy {
     this.productForm.addControl('salesRate',new FormControl('',[Validators.required]));
     this.units = this.lookupService.getUnits();
     this.categories = this.lookupService.getProductCategories();
+
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+          this.productService.getProductById(Number.parseInt(params.get('id')))
+        ));
   }
 
   ngOnDestroy(){

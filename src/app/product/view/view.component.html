@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-sm">
+    <h4>Product</h4>
+  </div>
+</div>
+<div class="jumbotron col-sm-8" style="margin:auto">
+  <div class="form-group row">
+    <label for="" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <label for="" class="col-sm-12 col-form-label">{{(product$ | async).name}}</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="" class="col-sm-2 col-form-label">Code</label>
+    <div class="col-sm-10">
+      <label for="" class="col-sm-12 col-form-label">{{(product$ | async).code}}</label>
+    </div>
+
+  </div>
+  <div class="form-group row">
+    <label for="" class="col-sm-2 col-form-label">Category</label>
+    <div class="col-sm-10">
+      <label for="" class="col-sm-12 col-form-label">{{(product$ | async).category.name}}</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Unit</label>
+      <div class="col-sm-10">
+        <label for="" class="col-sm-12 col-form-label">{{(product$ | async).unit.name}}</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Purchase Rate</label>
+      <div class="col-sm-4">
+        <label for="" class="col-sm-12 col-form-label">{{(product$ | async).purchaseRate}}</label>
+      </div>
+      <label for="" class="col-sm-2 col-form-label">Sales Rate</label>
+      <div class="col-sm-4">
+        <label for="" class="col-sm-12 col-form-label">{{(product$ | async).salesRate}}</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">&nbsp;</label>
+      <div class="col-sm-10">
+          <button type="button" class="btn btn-success fa fa-pencil-square-o"  (click)='editProduct(product)' >&nbsp;Edit</button>&nbsp;
+          <button type="button" class="btn btn-light fa fa-ban" routerLink='/products' >&nbsp;Cancel</button>
+      </div>
+    </div>
+  </div>
