@@ -6,3 +6,7 @@
     cursor: pointer;
     color: red;
 }
+
+.action-label{
+    color: black !important;
+}

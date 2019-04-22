@@ -28,6 +28,4 @@ export class ListComponent implements OnInit {
   viewProduct(product:IProduct):void{
     this.router.navigate(['products/view/'+product.id]);
   }
-
-  
 }

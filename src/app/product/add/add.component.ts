@@ -7,6 +7,7 @@ import { Product, IProduct } from '../models/product';
 import { ProductService } from '../service/product.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { isNullOrUndefined } from 'util';
 
 
 @Component({
@@ -39,10 +40,22 @@ export class AddComponent implements OnInit, OnDestroy {
     this.units = this.lookupService.getUnits();
     this.categories = this.lookupService.getProductCategories();
 
-    this.route.paramMap.pipe(
+    const product$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
           this.productService.getProductById(Number.parseInt(params.get('id')))
         ));
+
+        product$.subscribe(product=>{
+          if(!isNullOrUndefined(product)){
+            console.log(product);
+            this.productForm.get('name').setValue(product.name);
+            this.productForm.get('code').setValue(product.code);
+            this.productForm.get('category').setValue(product.category.code);
+            this.productForm.get('unit').setValue(product.unit.code);
+            this.productForm.get('salesRate').setValue(product.salesRate);
+            this.productForm.get('purchaseRate').setValue(product.purchaseRate);
+          }
+        })
   }
 
   ngOnDestroy(){
