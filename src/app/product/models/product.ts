@@ -16,7 +16,7 @@ export class Product {
     unit:Lookup
     salesRate:number;
     purchaseRate:number
-    constructor(name:string,code:string,category:Lookup,unit:Lookup,salesRate:number, purchaseRate:number){
+    constructor(name?:string,code?:string,category?:Lookup,unit?:Lookup,salesRate?:number, purchaseRate?:number){
         this.name = name;
         this.code = code;
         this.category = category;

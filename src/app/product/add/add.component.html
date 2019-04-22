@@ -1,3 +1,76 @@
-<p>
-  add works!
-</p>
+<div class="row">
+  <div class="col-sm">
+    <h4>Add Product</h4>
+  </div>
+</div>
+<form [formGroup]="productForm">
+  <div class="jumbotron col-sm-8" style="margin:auto">
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" formControlName="name">
+        <div *ngIf="formSubmitted && productForm.get('name').errors"  class="invalid-error">
+          <div *ngIf="productForm.get('name').errors.required">Name is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Code</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" formControlName="code">
+        <div *ngIf="formSubmitted && productForm.get('code').errors"  class="invalid-error">
+          <div *ngIf="productForm.get('code').errors.required">Code is required</div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Category</label>
+      <div class="col-sm-10">
+        <select name="" id="" class="form-control"  formControlName="category">
+            <option value="" *ngFor="let category of categories | async" 
+            [value]="category.code" >{{category.name}}</option>
+        </select>
+        <div *ngIf="formSubmitted && productForm.get('category').errors"  class="invalid-error">
+          <div *ngIf="productForm.get('category').errors.required">Category is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Unit</label>
+      <div class="col-sm-10">
+        <select name="" id="" class="form-control"  formControlName="unit">
+            <option *ngFor="let unit of units | async" [value]="unit.code">{{unit.name}}</option>
+        </select>
+        <div *ngIf="formSubmitted && productForm.get('unit').errors"  class="invalid-error">
+          <div *ngIf="productForm.get('unit').errors.required">Unit is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Purchase Rate</label>
+      <div class="col-sm-4">
+        <input type="text" appNumberonly class="form-control"   formControlName="purchaseRate">
+        <div *ngIf="formSubmitted && productForm.get('purchaseRate').errors"  class="invalid-error">
+          <div *ngIf="productForm.get('purchaseRate').errors.required">Purchase rate is required</div>
+        </div>
+      </div>
+      <label for="" class="col-sm-2 col-form-label">Sales Rate</label>
+      <div class="col-sm-4">
+        <input type="text" appNumberonly class="form-control"   formControlName="salesRate">
+        <div *ngIf="formSubmitted && productForm.get('salesRate').errors"  class="invalid-error">
+          <div *ngIf="productForm.get('salesRate').errors.required">Sales rate is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">&nbsp;</div>
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">&nbsp;</label>
+      <div class="col-sm-10">
+          <button type="button" class="btn btn-success fa fa-floppy-o" (click)="save($event)" >&nbsp;Save</button>&nbsp;
+          <button type="button" class="btn btn-success fa fa-floppy-o" (click) ="saveAndContinue($event)" >&nbsp;Save & Continue</button>&nbsp;
+          <button type="button" class="btn btn-light fa fa-ban">&nbsp;Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>
