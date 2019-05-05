@@ -31,6 +31,7 @@ export class AddComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
+    this.productForm.addControl('id',new FormControl('',[Validators.required]));
     this.productForm.addControl('name',new FormControl('',[Validators.required]));
     this.productForm.addControl('code',new FormControl('',[Validators.required]));
     this.productForm.addControl('category',new FormControl('',[Validators.required]));
@@ -48,6 +49,7 @@ export class AddComponent implements OnInit, OnDestroy {
         product$.subscribe(product=>{
           if(!isNullOrUndefined(product)){
             console.log(product);
+            this.productForm.get('id').setValue(product.id);
             this.productForm.get('name').setValue(product.name);
             this.productForm.get('code').setValue(product.code);
             this.productForm.get('category').setValue(product.category.code);
@@ -93,6 +95,7 @@ export class AddComponent implements OnInit, OnDestroy {
   saveProduct():void{
     const product =new Product();
     // map data from form to product
+    product.id = this.productForm.get('id').value;
     product.name = this.productForm.get('name').value;
     product.code = this.productForm.get('code').value;
     product.category = this.getLookupObjFromCode(this.productForm.get('category').value);
@@ -101,7 +104,11 @@ export class AddComponent implements OnInit, OnDestroy {
     product.salesRate = this.productForm.get('salesRate').value;
 
     // save to database
-    this.productService.addNewProduct(product);
+    if(product.id === 0){
+      this.productService.addNewProduct(product);}
+      else {
+        this.productService.updateProduct(product);
+      }
   }
 
 
