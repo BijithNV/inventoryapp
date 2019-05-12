@@ -35,7 +35,7 @@ export class ProductService {
 
   addNewProduct(product:IProduct):void{
     this.products.sort(item => item.id)
-    console.log(this.products);
+    product.id = this.products.length + 1
     this.products.push(product);
   }
 
@@ -44,6 +44,12 @@ export class ProductService {
     const deletedItem = this.products.splice(index,1);
 
     return deletedItem;
+  }
+
+  updateProduct(product:IProduct):void{
+
+    const index = this.products.findIndex(item => item.id === product.id);
+    this.products[index] = product;
   }
 
 }

@@ -31,7 +31,7 @@ export class AddComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.productForm.addControl('id',new FormControl('',[Validators.required]));
+    this.productForm.addControl('id',new FormControl(''));
     this.productForm.addControl('name',new FormControl('',[Validators.required]));
     this.productForm.addControl('code',new FormControl('',[Validators.required]));
     this.productForm.addControl('category',new FormControl('',[Validators.required]));
@@ -70,7 +70,6 @@ export class AddComponent implements OnInit, OnDestroy {
   save($event:any):void{
 
     this.formSubmitted = true;
-    console.log(this.productForm.get('name').errors);
     if(!this.productForm.valid){
       return;
     }
@@ -104,7 +103,7 @@ export class AddComponent implements OnInit, OnDestroy {
     product.salesRate = this.productForm.get('salesRate').value;
 
     // save to database
-    if(product.id === 0){
+    if(product.id == 0){
       this.productService.addNewProduct(product);}
       else {
         this.productService.updateProduct(product);
